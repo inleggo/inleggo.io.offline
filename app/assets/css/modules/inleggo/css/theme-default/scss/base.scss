@@ -1,0 +1,48 @@
+#base {
+  overflow: hidden;
+  padding-left: 64px;
+  width: 100%;
+  min-height: 100%;
+  > .backdrop {
+    position: fixed;
+    z-index: 1031;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: block;
+    background-color: rgba(12, 12, 12, 0.33);
+  }
+  &.hide-backdrop > .backdrop {
+    display: none;
+    position: relative;
+  }
+}
+
+#content {
+  position: relative;
+  width: 100%;
+  left: 0;
+  padding-top: 64px;
+}
+
+@media (min-width: 1200px) {
+  .menubar-pin #base {
+    padding-left: 240px;
+  }
+}
+
+@media (min-width: 769px) {
+  .full-content {
+    #base, #content {
+      height: 100%;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  #base {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

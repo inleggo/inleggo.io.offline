@@ -1,0 +1,111 @@
+    <section>
+        <div class="section-header">
+            <ol class="breadcrumb">
+                <li><a href="/captura">Captura</a></li>
+                <li class="active">Listado</li>
+            </ol>
+
+        </div>
+        <div class="section-body contain-lg">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="text-primary"> <i class="fa fa-folder-open fa-fw text-primary-dark"> </i> Capturas disponibles</h1>
+                </div>
+                <div class="col-lg-8">
+                    <article class="margin-bottom-xxl">
+                        <p class="lead">
+                            Planillas del inventario físico debidamente firmadas.
+                        </p>
+                    </article>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-head">
+                            <ul class="nav nav-tabs tabs-accent-dark" data-toggle="tabs">
+                                <li class="active ucase ink-reaction"><a href="#bienes" data-target="#bienes" data-toggle="tab">bienes</a></li>
+                                <li class="ucase ink-reaction"><a href="#maquinarias" data-target="#maquinarias" data-toggle="tab">Maquinarias</a></li>
+                                <li class="ucase ink-reaction"><a href="#vehiculos" data-target="#vehiculos" data-toggle="tab">Vehículos</a></li>
+                            </ul>
+                        </div>
+                        <div class="card-body tab-content">
+                            <div class="tab-pane active" id="bienes">
+                                <div id="bienes_list" class="row">Bienes</div>
+                            </div>
+                            <div class="tab-pane" id="maquinarias">
+                                <div id="maquinarias_list" class="row">Maquinarias</div>
+                            </div>
+                            <div class="tab-pane" id="vehiculos">
+                                <div id="vehiculos_list" class="row">Vehículos</div>
+                            </div>
+                        </div>
+                    </div>
+                    <em class="text-caption">By Inleggo.io</em>
+                </div>
+
+            </div>
+            <hr class="ruler-l">
+    </section>
+<script src="assets/js/modules/inleggo/core/demo/general.js"></script>
+<script type="text/javascript">
+    var msgCapturaNone = '<div class="text-center"><span class="text-xl text-normal">No hay capturas digitadas.</span></div>';
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '../app/sqlite/' + localStorage.getItem('in_db') + '.sqlite', true);
+    xhr.responseType = 'arraybuffer';
+    xhr.onload = function(e) {
+      var uInt8Array = new Uint8Array(this.response);
+      var db = new SQL.Database(uInt8Array);
+
+      // Bienes
+      var stmt1 = db.prepare("SELECT id FROM captura_bien WHERE user =  '" + localStorage.getItem('userId') + "'");
+      stmt1.getAsObject({$start:1, $end:1});
+      stmt1.bind({$start:1, $end:2});
+      var c_bien = '';
+      while(stmt1.step()) {
+          var row = stmt1.getAsObject();
+          c_bien += '<div class="col-sm-2"> <p> <a  class="btn btn-block ink-reaction btn-default-bright" href="captura/busqueda/1/'+row.id+'>"> <i class="fa fa-file-o"></i>&nbsp; '+row.id+' </a> </p> </div>';
+      }
+      if(c_bien.length>0){
+          $("#bienes_list").html(c_bien);
+      }else {
+          $("#bienes_list").html(msgCapturaNone);
+      }
+
+      // Maquinarias
+      var stmt2 = db.prepare("SELECT id FROM captura_maquinaria WHERE user =  '" + localStorage.getItem('userId') + "'");
+      stmt2.getAsObject({$start:1, $end:1});
+      stmt2.bind({$start:1, $end:2});
+      var c_maquinaria = '';
+      while(stmt2.step()) {
+          var row = stmt2.getAsObject();
+          c_maquinaria += '<div class="col-sm-2"> <p> <a  class="btn btn-block ink-reaction btn-default-bright" href="captura/busqueda/2/'+row.id+'>"> <i class="fa fa-file-o"></i>&nbsp; '+row.id+' </a> </p> </div>';
+      }
+      if(c_maquinaria.length>0){
+          $("#maquinarias_list").html(c_maquinaria);
+      }else {
+          $("#maquinarias_list").html(msgCapturaNone);
+      }
+
+      // Vehiculos
+      var stmt3 = db.prepare("SELECT id FROM captura_vehiculo WHERE user =  '" + localStorage.getItem('userId') + "'");
+      stmt3.getAsObject({$start:1, $end:1});
+      stmt3.bind({$start:1, $end:2});
+      var c_vehiculo = '';
+      while(stmt3.step()) {
+          var row = stmt3.getAsObject();
+          c_vehiculo += '<div class="col-sm-2"> <p> <a  class="btn btn-block ink-reaction btn-default-bright" href="captura/busqueda/3/'+row.id+'>"> <i class="fa fa-file-o"></i>&nbsp; '+row.id+' </a> </p> </div>';
+      }
+      if(c_vehiculo.length>0){
+          $("#vehiculos_list").html(c_vehiculo);
+      }else {
+          $("#vehiculos_list").html(msgCapturaNone);
+      }
+
+    };
+    xhr.send();
+
+    $("#nomUserHome").html(localStorage.getItem('userNombre') + ' ' + localStorage.getItem('userPaterno') + '<br><small>' + localStorage.getItem('userTipoNombre') + '</small>');
+</script>

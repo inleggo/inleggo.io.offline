@@ -1,0 +1,142 @@
+
+.nav a {
+  + .dropdown-toggle {
+    .fa, .md {
+      margin: 0;
+    }
+  }
+  .fa + .fa, .md + .md {
+    margin-right: 0;
+    margin-left: 6px;
+  }
+}
+
+body [class*=" md-"], [class^=md-] {
+  font-size: 1.2em;
+  margin-top: -0.2em;
+  margin-bottom: -0.2em;
+}
+
+.dropdown-menu {
+  margin: 0;
+  border-color: rgba(255, 255, 255, 0.9);
+  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+  > li > a {
+    padding: 5px 20px;
+  }
+  .alert {
+    min-width: 250px;
+    margin: 10px;
+    padding: 10px;
+    &:before {
+      content: " ";
+      display: table;
+    }
+    &:after {
+      content: " ";
+      display: table;
+      clear: both;
+    }
+  }
+  img {
+    &.pull-right {
+      margin-left: 10px;
+      margin-bottom: 2px;
+    }
+    &.pull-left {
+      margin-right: 10px;
+      margin-bottom: 2px;
+    }
+  }
+}
+
+.dropdown-header {
+  padding: 15px 20px 5px 20px;
+  font-size: 10px;
+  font-weight: 500;
+  opacity: .6;
+}
+
+.dropdown-avatar {
+  max-width: 40px;
+}
+
+li.dropdown-progress {
+  min-width: 250px;
+  > a {
+    padding: 15px 0px;
+  }
+  .dropdown-label {
+    padding: 5px 20px;
+  }
+  .progress {
+    margin-bottom: 0;
+    height: 5px;
+  }
+}
+
+.dropdown-label {
+  &:before {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    content: " ";
+    display: table;
+    clear: both;
+  }
+}
+
+.dropup .dropdown-menu {
+  margin-bottom: 0;
+}
+
+.open > .dropdown-menu.animation-zoom {
+  -webkit-animation: zoom-down 0.25s ease-out;
+  -moz-animation: zoom-down 0.25s ease-out;
+  -ms-animation: zoom-down 0.25s ease-out;
+  -o-animation: zoom-down 0.25s ease-out;
+  animation: zoom-down 0.25s ease-out;
+}
+
+.dropup.open > .dropdown-menu.animation-zoom {
+  -webkit-animation: zoom-up 0.25s ease-out;
+  -moz-animation: zoom-up 0.25s ease-out;
+  -ms-animation: zoom-up 0.25s ease-out;
+  -o-animation: zoom-up 0.25s ease-out;
+  animation: zoom-up 0.25s ease-out;
+}
+
+.open > .dropdown-menu {
+  &.animation-slide {
+    -webkit-animation: slide-right 0.3s ease-out;
+    -moz-animation: slide-right 0.3s ease-out;
+    -ms-animation: slide-right 0.3s ease-out;
+    -o-animation: slide-right 0.3s ease-out;
+    animation: slide-right 0.3s ease-out;
+  }
+  &.animation-dock {
+    -webkit-animation: slide-up 0.3s ease-out;
+    -moz-animation: slide-up 0.3s ease-out;
+    -ms-animation: slide-up 0.3s ease-out;
+    -o-animation: slide-up 0.3s ease-out;
+    animation: slide-up 0.3s ease-out;
+  }
+}
+
+.dropup.open > .dropdown-menu.animation-dock, .open > .dropdown-menu.animation-expand {
+  -webkit-animation: slide-down 0.3s ease-out;
+  -moz-animation: slide-down 0.3s ease-out;
+  -ms-animation: slide-down 0.3s ease-out;
+  -o-animation: slide-down 0.3s ease-out;
+  animation: slide-down 0.3s ease-out;
+}
+
+.dropup.open > .dropdown-menu.animation-expand {
+  -webkit-animation: slide-up 0.3s ease-out;
+  -moz-animation: slide-up 0.3s ease-out;
+  -ms-animation: slide-up 0.3s ease-out;
+  -o-animation: slide-up 0.3s ease-out;
+  animation: slide-up 0.3s ease-out;
+}

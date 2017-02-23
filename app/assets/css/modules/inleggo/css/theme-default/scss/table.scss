@@ -1,0 +1,54 @@
+.table {
+  > {
+    thead > tr > th, tbody > tr > th, tfoot > tr > th, thead > tr > td, tbody > tr > td, tfoot > tr > td {
+      vertical-align: baseline;
+    }
+  }
+  thead {
+    opacity: 0.75;
+    > tr > th {
+      color: inherit;
+      font-weight: 500;
+    }
+  }
+}
+
+.table-bordered {
+  border-color: rgba(163, 168, 168, 0.2);
+  > {
+    thead > tr > th, tbody > tr > th, tfoot > tr > th, thead > tr > td, tbody > tr > td, tfoot > tr > td {
+      border-color: rgba(163, 168, 168, 0.2);
+    }
+  }
+}
+
+.table-striped > tbody > tr:nth-child(odd) > {
+  td, th {
+    background-color: rgba(242, 243, 243, 0.35);
+  }
+}
+
+.table-banded > tbody > tr > {
+  td:nth-child(odd), th:nth-child(odd) {
+    background-color: rgba(242, 243, 243, 0.35);
+  }
+}
+
+.table-no-border {
+  border-color: transparent;
+  > {
+    thead > tr > th, tbody > tr > th, tfoot > tr > th, thead > tr > td, tbody > tr > td, tfoot > tr > td {
+      border-color: transparent;
+    }
+  }
+}
+
+.table-condensed > tbody > tr > td {
+  vertical-align: middle;
+}
+
+.table-hover > tbody > tr:hover > {
+  td, th {
+    background-color: rgba(229, 230, 230, 0.25);
+  }
+}

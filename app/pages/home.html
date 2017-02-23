@@ -1,0 +1,54 @@
+<section class="full-bleed">
+    <div class="section-body style-default-dark force-padding text-shadow">
+        <div class="img-backdrop" style="background-image: url('assets/img/modules/inleggo/img17.jpg')"></div>
+        <div class="overlay overlay-shade-top stick-top-left height-3"></div>
+        <div class="row">
+            <div class="col-md-3 col-xs-5">
+                <img class="img-circle border-white border-xl img-responsive auto-width" src="assets/img/modules/inleggo/no_user.png" alt="" style="background-color:#fff; "/>
+                <h3 id="nomUserHome"></h3>
+            </div>
+            <div class="col-md-9 col-xs-7">
+                <div class="width-3 text-center pull-right">
+                    <strong class="text-xl" id="itemsUser"></strong><br/>
+                    <span class="text-light opacity-75">Items</span>
+                </div>
+                <div class="width-3 text-center pull-right">
+                    <strong class="text-xl" id="cpturasUser"></strong><br/>
+                    <span class="text-light opacity-75">Capturas</span>
+                </div>
+            </div>
+        </div>
+        <div class="overlay overlay-shade-bottom stick-bottom-left force-padding text-right">
+            <a class="btn btn-icon-toggle" data-toggle="tooltip" data-placement="top" data-original-title="Contact me"><i class="fa fa-envelope"></i></a>
+            <a class="btn btn-icon-toggle" data-toggle="tooltip" data-placement="top" data-original-title="Follow me"><i class="fa fa-twitter"></i></a>
+            <a class="btn btn-icon-toggle" data-toggle="tooltip" data-placement="top" data-original-title="Personal info"><i class="fa fa-facebook"></i></a>
+        </div>
+    </div>
+</section>
+<script src="assets/js/modules/inleggo/core/demo/general.js"></script>
+<script type="text/javascript">
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '../app/sqlite/' + localStorage.getItem('in_db') + '.sqlite', true);
+    xhr.responseType = 'arraybuffer';
+    xhr.onload = function(e) {
+      var uInt8Array = new Uint8Array(this.response);
+      var db = new SQL.Database(uInt8Array);
+      var stmt = db.prepare("SELECT COUNT(id) AS total FROM detalle_captura WHERE user = '" + localStorage.getItem('userId') + "'");
+      stmt.getAsObject({$start:1, $end:1});
+      stmt.bind({$start:1, $end:2});
+      while(stmt.step()) {
+          var row = stmt.getAsObject();
+          $("#itemsUser").html(row.total);
+      }
+      var stmt2 = db.prepare("SELECT COUNT(id) AS total FROM captura_bien WHERE user = '" + localStorage.getItem('userId') + "'");
+      stmt2.getAsObject({$start:1, $end:1});
+      stmt2.bind({$start:1, $end:2});
+      while(stmt2.step()) {
+          var row2 = stmt2.getAsObject();
+          $("#cpturasUser").html(row2.total);
+      }
+    };
+    xhr.send();
+
+    $("#nomUserHome").html(localStorage.getItem('userNombre') + ' ' + localStorage.getItem('userPaterno') + '<br><small>' + localStorage.getItem('userTipoNombre') + '</small>');
+</script>

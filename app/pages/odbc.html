@@ -1,0 +1,90 @@
+
+    <section>
+        <div class="section-header">
+            <ol class="breadcrumb">
+                <li><a href="#">Documentación</a></li>
+                <li class="active">ODBC</li>
+            </ol>
+        </div>
+        <div class="section-body contain-lg">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="text-primary"> <i class="fa fa-database fa-fw text-primary-dark"> </i> ODBC</h1>
+                </div>
+                <div class="col-lg-8">
+                    <article class="margin-bottom-l">
+                        <p class="lead"> Conecte su equipo a un orígen de datos ODBC. </p>
+                    </article>
+                </div>
+            </div>
+            <div id="resp-ajax" class="alert" role="alert"></div>
+            <div class="row">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Crear conexiones a orígenes de datos ODBC</h3>
+                        <p> Para poder conectarse desde Inleggo.io DB (MySQL) a un equipo con Windows necesitamos un conector ODBC. </p>
+                        <hr class="ruler-l">
+                        <h4>Descarga directa</h4>
+                        <p> Descargar el driver de conexión: </p>
+                        <div class="row">
+                            <div class="col-xs-6 text-center">
+                                <a href="http://cdn.mysql.com/Downloads/Connector-ODBC/5.3/mysql-connector-odbc-5.3.6-win32.msi" class="btn ink-reaction btn-primary" download>Driver 32 bits</a> </div>
+                            <div class="col-xs-6 text-center">
+                                <a href="http://cdn.mysql.com/Downloads/Connector-ODBC/5.3/mysql-connector-odbc-5.3.6-winx64.msi" class="btn ink-reaction btn-primary" download>Driver 64 bits</a> </div>
+                        </div>
+                        <hr class="ruler-l">
+                        <h4>Instale el driver MySQL</h4>
+                        <div class="row">
+                            <div class="col-sm-6 text-center"> <br> <img class="img-responsive display-inline" src="assets/img/modules/doc/odbc/1.png" alt=""> </div>
+                            <div class="col-sm-6 text-center"> <br> <img class="img-responsive display-inline" src="assets/img/modules/doc/odbc/2.png" alt=""> </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 text-center"> <br> <img class="img-responsive display-inline" src="assets/img/modules/doc/odbc/3.png" alt=""> </div>
+                            <div class="col-sm-6 text-center"> <br> <img class="img-responsive display-inline" src="assets/img/modules/doc/odbc/4.png" alt=""> </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 text-center"> <br> <img class="img-responsive display-inline" src="assets/img/modules/doc/odbc/5.png" alt=""> </div>
+                            <div class="col-sm-6 text-center"> <br> <img class="img-responsive display-inline" src="assets/img/modules/doc/odbc/6.png" alt=""> </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 text-center"> <br> <img class="img-responsive display-inline" src="assets/img/modules/doc/odbc/7.png" alt=""> </div>
+                            <div class="col-sm-6 text-center"> <br> <img class="img-responsive display-inline" src="assets/img/modules/doc/odbc/8.png" alt=""> </div>
+                        </div>
+                        <hr class="ruler-l">
+                        <h4>Cree la conexión ODBC</h4>
+                        <p> Dirijase al <strong>panel de control</strong>: </p>
+                        <div class="row">
+                            <div class="col-sm-12 text-center"> <br> <img class="img-responsive display-inline" src="assets/img/modules/doc/odbc/9.png" alt=""> </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 text-center"> <br> <img class="img-responsive display-inline" src="assets/img/modules/doc/odbc/10.png" alt=""> </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 text-center"> <br> <img class="img-responsive display-inline" src="assets/img/modules/doc/odbc/11.png" alt=""> <br> Seleccione la versión (32 o 64) que instalo. </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 text-center"> <br> <img class="img-responsive display-inline" src="assets/img/modules/doc/odbc/12.png" alt=""> <br> Seleccione la opción agregar. </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 text-center"> <br> <img class="img-responsive display-inline" src="assets/img/modules/doc/odbc/13.png" alt=""> <br> Seleccione la opción MySQL ODBC 5.3 Unicode Driver. </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 text-center"> <br> <img class="img-responsive display-inline" src="assets/img/modules/doc/odbc/14.png" alt=""> </div>
+                            <div class="col-sm-6"> <br>
+                                <h5>Parámetros de configuración para MRE 2016</h5>
+                                <p> <strong>Data Source Name</strong>: mre_2016_temp<br> <strong>TCP/IP Server</strong>: inleggo.io<br> <strong>Port</strong>: 3306<br> <strong>User</strong>: mre<br> <strong>Password</strong>: 20131380101<br> <strong>Database</strong>:
+                                    inleggo_mre_2016_temp
+                                    <br> </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 text-center"> <br> <img class="img-responsive display-inline" src="assets/img/modules/doc/odbc/15.png" alt=""> <br> Probamos la configuración con el boton test y luego le damos en ok. </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 text-center"> <br> <img class="img-responsive display-inline" src="assets/img/modules/doc/odbc/17.png" alt=""> <br> Como resultado final veremos el nombre del orígen de datos creado. </div>
+                        </div>
+                    </div>
+                </div> <em class="text-caption">By Inleggo.io </em> </div>
+            <hr class="ruler-l">
+</section>
+<script src="assets/js/modules/inleggo/core/demo/general.js"></script>

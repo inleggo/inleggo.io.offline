@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Inleggo.io</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/img/modules/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" href="assets/img/modules/favicon/apple-touch-icon-57x57.png" size="57x57" />
+    <link rel="apple-touch-icon" href="assets/img/modules/favicon/apple-touch-icon-114x114.png" size="114x114" />
+    <link rel="apple-touch-icon" href="assets/img/modules/favicon/apple-touch-icon-72x72.png" size="72x72" />
+    <link rel="apple-touch-icon" href="assets/img/modules/favicon/apple-touch-icon-144x144.png" size="144x144" />
+    <link rel="apple-touch-icon" href="assets/img/modules/favicon/apple-touch-icon-60x60.png" size="60x60" />
+    <link rel="apple-touch-icon" href="assets/img/modules/favicon/apple-touch-icon-120x120.png" size="120x120" />
+    <link rel="apple-touch-icon" href="assets/img/modules/favicon/apple-touch-icon-76x76.png" size="76x76" />
+    <link rel="apple-touch-icon" href="assets/img/modules/favicon/apple-touch-icon-152x152.png" size="152x152" />
+    <link rel="apple-touch-icon" href="assets/img/modules/favicon/apple-touch-icon-180x180.png" size="180x180" />
+    <link rel="icon" type="image/png" href="assets/img/modules/favicon/favicon-192x192.png" size="192x192" />
+    <link rel="icon" type="image/png" href="assets/img/modules/favicon/favicon-160x160.png" size="160x160" />
+    <link rel="icon" type="image/png" href="assets/img/modules/favicon/favicon-96x96.png" size="96x96" />
+    <link rel="icon" type="image/png" href="assets/img/modules/favicon/favicon-16x16.png" size="16x16" />
+    <link rel="icon" type="image/png" href="assets/img/modules/favicon/favicon-32x32.png" size="32x32" />
+    <link type="text/plain" rel="author" href="/humans.txt" />
+    <link href="assets/css/modules/inleggo/css/open-sans.css" rel="stylesheet" />
+    <link href="assets/css/modules/inleggo/css/theme-default/bootstrap.css" rel="stylesheet" />
+    <link href="assets/css/modules/inleggo/css/theme-default/inleggo.css" rel="stylesheet" />
+    <link href="assets/css/modules/inleggo/css/theme-default/font-awesome.min.css" rel="stylesheet" />
+    <link href="assets/css/modules/inleggo/css/theme-default/material-design-iconic-font.min.css" rel="stylesheet" />
+    <link href="assets/css/modules/inleggo/css/theme-default/libs/select2/select2v4.css" rel="stylesheet"/>
+    <link href="assets/css/modules/inleggo/css/theme-default/libs/multi-select/multi-select.css" rel="stylesheet" />
+    <link href="assets/css/modules/inleggo/css/theme-default/libs/rickshaw/rickshaw.css" rel="stylesheet" />
+    <link href="assets/css/modules/inleggo/css/theme-default/libs/morris/morris.core.css" rel="stylesheet" />
+    <link href="assets/css/modules/inleggo/css/theme-default/libs/toastr/toastr.css" rel="stylesheet" />
+    <link href="assets/css/modules/inleggo/css/theme-default/libs/bootstrap-datepicker/datepicker3.css" rel="stylesheet" />
+</head>
+
+<body class="menubar-hoverable header-fixed ">
+    <div class="loading-animation">
+        <div class="sk-double-bounce">
+            <div class="sk-child sk-double-bounce1"></div>
+            <div class="sk-child sk-double-bounce2"></div>
+        </div>
+    </div>
+    <header id="header">
+        <div class="headerbar">
+            <div class="headerbar-left">
+                <ul class="header-nav header-nav-options">
+                    <li class="header-nav-brand">
+                        <div id="titleApp" class="brand-holder"></div>
+                    </li>
+                    <li>
+                        <a id="menu-in" class="btn btn-icon-toggle menubar-toggle" data-toggle="menubar" href="javascript:void(0);"> <i class="fa fa-bars"></i> </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="headerbar-right">
+                <ul class="header-nav header-nav-options">
+                    <li>
+                        <form class="navbar-search" id="form_busqueda_item_header" role="search">
+                            <div class="form-group"> <input type="text" class="form-control" name="headerSearch" id="codigo_bien_header" placeholder="Buscar Item (2016)"> </div> <button type="submit" class="btn btn-icon-toggle ink-reaction"><i class="fa fa-search"></i></button>
+                        </form>
+                    </li>
+                    <li class="dropdown hidden-xs">
+                        <a href="javascript:void(0);" class="btn btn-icon-toggle btn-default" data-toggle="dropdown"> <i class="fa fa-area-chart"></i> </a>
+                        <ul class="dropdown-menu animation-expand">
+                            <li id="infoHeaderDropdown" class="dropdown-header"></li>
+                            <li class="dropdown-progress">
+                                <a href="javascript:void(0);">
+                                    <div class="dropdown-label"> <span class="text-light">Digitado <strong>hoy</strong></span> <strong class="pull-right _items_digitados"></strong> </div>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-success" style="width: %"></div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="header-nav header-nav-profile">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle ink-reaction" data-toggle="dropdown" aria-expanded="true"> <img src="assets/img/modules/inleggo/no_user.png" alt="" /> <span class="profile-info"></span> </a>
+                        <ul class="dropdown-menu animation-dock">
+                            <li class="dropdown-header">Configuración</li>
+                            <li><a href="digitacion.html">Mi digitación</a></li>
+                            <li><a href="cambiar.html">Cambiar contraseña</a></li>
+                            <li class="divider"></li>
+                            <li><a href="login.html"><i class="fa fa-fw fa-power-off text-danger"></i> Cerrar Sesion</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="header-nav header-nav-toggle">
+                    <li>
+                        <a class="btn btn-icon-toggle btn-default" href="#offcanvas-search" data-toggle="offcanvas" data-backdrop="true"> <i class="fa fa-ellipsis-v"></i> </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div id="base">
+        <div class="offcanvas"></div>
+        <div id="content"></div>
+        <div id="menubar" class="menubar-inverse ">
+            <div class="menubar-fixed-panel">
+                <div>
+                    <a class="btn btn-icon-toggle btn-default menubar-toggle" data-toggle="menubar" href="javascript:void(0);"> <i class="fa fa-bars"></i> </a>
+                </div>
+                <div class="expanded">
+                    <a href="/"> <span class="text-lg text-bold text-primary ucase">Inleggo.io </span> </a>
+                </div>
+            </div>
+            <div class="menubar-scroll-panel">
+                <ul id="main-menu" class="gui-controls">
+                    <li>
+                        <a  href="#" class="linkIN" data-page="home">
+                            <div class="gui-icon"><i class="md md-home"></i></div> <span class="title">Home</span> </a>
+                    </li>
+                    <li class="gui-folder">
+                        <a href="javascript:void(0);">
+                            <div class="gui-icon"><i class="fa fa-user"></i></div> <span class="title">Usuario</span> </a>
+                        <ul>
+                            <li><a href="/usuario/dashboard"><span class="title">Dashboard</span></a></li>
+                            <li><a href="/usuario/digitacion"><span class="title">Digitación</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="gui-folder">
+                        <a href="javascript:void(0);">
+                            <div class="gui-icon"><i class="fa fa-folder-open fa-fw"></i></div> <span class="title">Captura</span> </a>
+                        <ul>
+                            <li><a href="#" class="linkIN" data-page="captura/listado"><span class="title">Listado</span></a></li>
+                            <li><a href="#" class="linkIN" data-page="captura/nuevo"><span class="title">Nuevo</span></a></li>
+                            <li><a href="#" class="linkIN" data-page="captura/busqueda"><span class="title">Búsqueda</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="gui-folder">
+                        <a href="javascript:void(0);">
+                            <div class="gui-icon"><i class="fa fa-puzzle-piece fa-fw"></i></div> <span class="title">Item</span> </a>
+                        <ul>
+                            <li><a href="/item/nuevo"><span class="title">Nuevo</span></a></li>
+                            <li><a href="/item/busqueda"><span class="title">Búsqueda</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="gui-folder">
+                        <a href="javascript:void(0);">
+                            <div class="gui-icon"><i class="fa fa-leanpub"></i></div> <span class="title">Documentación</span> </a>
+                        <ul>
+                            <li><a href="#" class="linkIN" data-page="odbc"><span class="title">ODBC</span></a></li>
+                            <li><a href="#" class="linkIN" data-page="excel"><span class="title">Excel</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="menubar-foot-panel"> <small class="no-linebreak hidden-folded"> <span class="opacity-75">&copy; 2011 - 2017</span> &nbsp;&nbsp;<strong> <i class="md md-whatshot"></i> Inleggo.io </strong> </small> </div>
+            </div>
+        </div>
+        <div class="offcanvas">
+            <div id="offcanvas-search" class="offcanvas-pane width-8">
+                <div class="offcanvas-head style-primary small-padding">
+                    <header id="infoHeaderDropdown2"></header>
+                    <div class="offcanvas-tools">
+                        <a class="btn btn-icon-toggle btn-default-light pull-right" data-dismiss="offcanvas"> <i class="md md-close"></i> </a>
+                    </div>
+                </div>
+                <div class="offcanvas-body ">
+                    <h4 class="margin-0 text-primary"><i class="fa fa-keyboard-o"></i> Digitación</h4>
+                    <dl class="dl-horizontal text-light dl-respon2"> <dt class="text-light">Captura Actual</dt>
+                        <dd class="text-primary _captura_glob"></dd> <dt class="text-light">Items</dt>
+                        <dd class="text-primary _items_captura_glob"></dd> <dt class="text-light">Total de items de hoy</dt>
+                        <dd class="text-primary _items_digitados"></dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="assets/js/modules/inleggo/libs/jquery/jquery-1.11.2.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
+    <script type="text/javascript" src="assets/js/modules/inleggo/libs/jquery/jquery-migrate-1.4.1.min.js"></script>
+    <script type="text/javascript" src="assets/js/modules/inleggo/libs/sqljs/sql.js"></script>
+    <script type="text/javascript" src="../db.js"></script>
+    <script type="text/javascript" src="assets/js/modules/inleggo/core/demo/loading.js"></script>
+    <script src="assets/js/modules/inleggo/libs/bootstrap/bootstrap.min.js"></script>
+    <script src="assets/js/modules/inleggo/libs/spin.js/spin.min.js"></script>
+    <script src="assets/js/modules/inleggo/libs/autosize/jquery.autosize.min.js"></script>
+    <script src="assets/js/modules/inleggo/libs/inputmask/jquery.inputmask.bundle.min.js"></script>
+    <script src="assets/js/modules/inleggo/libs/select2/select2.full.min.js"></script>
+    <script src="assets/js/modules/inleggo/libs/moment/moment.min.js"></script>
+    <script src="assets/js/modules/inleggo/libs/jquery-knob/jquery.knob.min.js"></script>
+    <script src="assets/js/modules/inleggo/libs/sparkline/jquery.sparkline.min.js"></script>
+    <script src="assets/js/modules/inleggo/libs/nanoscroller/jquery.nanoscroller.min.js"></script>
+    <script src="assets/js/modules/inleggo/core/cache/43ef607ee92d94826432d1d6f09372e1.js"></script>
+    <script src="assets/js/modules/inleggo/libs/rickshaw/rickshaw.min.js"></script>
+    <script src="assets/js/modules/inleggo/libs/alphanumericpack/jquery.alphanum.js"></script>
+    <script src="assets/js/modules/inleggo/libs/nicescroll/jquery.nicescroll.min.js"></script>
+    <script src="assets/js/modules/inleggo/core/cache/63d0445130d69b2868a8d28c93309746.js"></script>
+    <script src="assets/js/modules/inleggo/core/demo/html5.logo.js"></script>
+    <script src="assets/js/modules/inleggo/libs/highcharts/highcharts.js" onload="Highcharts = window.Highcharts = module.exports;"></script>
+    <script src="assets/js/modules/inleggo/libs/toastr/toastr.js"></script>
+    <script src="assets/js/modules/inleggo/libs/bootstrap-rating/bootstrap-rating-input.min.js"></script>
+    <script src="assets/js/modules/inleggo/libs/highcharts/themes/inleggo.js"></script>
+    <script src="assets/js/modules/inleggo/libs/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+    <script src="assets/js/modules/inleggo/libs/bootstrap-datepicker/bootstrap-datepicker.es.js"></script>
+    <script src="assets/js/modules/inleggo/core/demo/TextCase.js"></script>
+    <script src="assets/js/modules/inleggo/core/demo/LoadExternal.js"></script>
+    <script src="assets/js/modules/inleggo/core/demo/Demo.js"></script>
+    <script src="assets/js/modules/inleggo/core/demo/DemoFormComponents.js"></script>
+    <script src="assets/js/modules/inleggo/core/demo/general.js"></script>
+    <script type="text/javascript">
+        $.ajaxPrefilter(function( options, original_Options, jqXHR ) {
+            options.async = true;
+        });
+        $(document).ready(function() {
+            loadPage();
+            var titleApp = localStorage.getItem('titleApp');
+            $("#titleApp").html(titleApp);
+            $("#infoHeaderDropdown").html('SERVIDOR ' + localStorage.getItem('app_empresa') + ' ' + localStorage.getItem('anio'));
+            $("#infoHeaderDropdown2").html('<strong>' + localStorage.getItem('app_empresa') + ' ' + localStorage.getItem('anio') + '</strong>')
+            $(".profile-info").html(localStorage.getItem('userNombre') + ' ' + localStorage.getItem('userPaterno') + '<small>' + localStorage.getItem('userTipoNombre') + '</small>');
+        });
+    </script>
+</body>
+
+</html>

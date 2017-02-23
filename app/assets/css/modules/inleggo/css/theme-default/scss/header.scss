@@ -1,0 +1,327 @@
+#header {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 64px;
+  z-index: 1005;
+  background: #ffffff;
+  color: rgba(49, 53, 52, 0.6);
+  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+}
+
+.header-fixed #header {
+  position: fixed;
+}
+
+.no-sidebar #header {
+  right: 12px;
+}
+
+.headerbar {
+  position: relative;
+  min-height: 50px;
+  &:before {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    content: " ";
+    display: table;
+    clear: both;
+  }
+  .navbar-devider {
+    display: block;
+    width: 20px;
+    height: 5px;
+  }
+}
+
+.headerbar-left {
+  position: absolute;
+  a {
+    float: left;
+  }
+  .header-nav {
+    margin-left: 24px;
+  }
+}
+
+.headerbar-right {
+  float: right;
+  .header-nav {
+    display: inline-block;
+    float: left;
+  }
+  .dropdown-menu {
+    left: auto;
+    right: 0;
+  }
+  .header-nav-toggle {
+    margin-left: 0;
+  }
+}
+
+.header-nav {
+  margin: 0 12px;
+  padding-left: 0;
+  list-style: none;
+  > li {
+    position: relative;
+    display: block;
+    padding: 14px 0 14px 12px;
+    float: left;
+    &:first-child {
+      padding-left: 0;
+    }
+    > a {
+      position: relative;
+      display: block;
+      &:hover, &:focus {
+        text-decoration: none;
+        background-color: rgba(12, 12, 12, 0.07);
+      }
+    }
+    &.disabled > a {
+      color: #969c9c;
+      &:hover, &:focus {
+        color: #969c9c;
+        text-decoration: none;
+        background-color: transparent;
+        cursor: not-allowed;
+      }
+    }
+  }
+  .open > a {
+    background-color: #e5e6e6;
+    border-color: #0aa89e;
+    &:hover, &:focus {
+      background-color: #e5e6e6;
+      border-color: #0aa89e;
+    }
+  }
+  > li > a > img {
+    max-width: none;
+  }
+  .btn-icon-toggle:hover {
+    background-color: rgba(12, 12, 12, 0.07);
+  }
+  .navbar-search {
+    float: right;
+  }
+  .header-nav-brand {
+    display: inline-table;
+    padding: 0;
+    height: 64px;
+    .brand-holder {
+      display: table-cell;
+      vertical-align: middle;
+    }
+    a {
+      text-decoration: none;
+    }
+    img {
+      max-height: 48px;
+    }
+  }
+}
+
+.header-nav-profile .dropdown {
+  padding: 0;
+  > a {
+    position: relative;
+    min-height: 64px;
+    padding: 12px;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    &:after {
+      content: "\f107";
+      position: absolute;
+      *margin-right: .3em;
+      right: 10px;
+      top: 22px;
+      font-family: FontAwesome;
+      font-weight: normal;
+      font-style: normal;
+      text-decoration: inherit;
+      -webkit-font-smoothing: antialiased;
+    }
+    .ink {
+      background-color: rgba(83, 88, 88, 0.15);
+    }
+  }
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+  }
+  .profile-info {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0 20px 0 10px;
+    line-height: 15px;
+    small {
+      display: block;
+      opacity: 0.5;
+    }
+  }
+  .dropdown-menu {
+    min-width: 100%;
+  }
+  &.open {
+    color: #313534;
+    > a {
+      margin-top: 6px;
+      padding: 6px 12px 12px 12px;
+      min-height: 58px;
+      background-color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.9);
+      -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+      &:after {
+        top: 16px;
+        -webkit-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        transform: rotate(180deg);
+      }
+    }
+    .dropdown-menu {
+      margin-top: -1px;
+      border-top: none;
+    }
+  }
+}
+
+.header-nav-options .dropdown {
+  > a .badge {
+    position: absolute;
+    font-size: 10px;
+    top: -1px;
+    right: 4px;
+  }
+  .dropdown-menu {
+    top: 14px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .menubar-first.menubar-pin {
+    .header-nav .header-nav-brand {
+      display: none;
+    }
+    #header {
+      left: 240px;
+    }
+  }
+}
+
+@media (min-width: 769px) {
+  .menubar-first #header {
+    .menubar-toggle {
+      display: none;
+    }
+    left: 64px;
+  }
+}
+
+@media (max-width: 768px) {
+  #header {
+    position: relative;
+  }
+  .header-fixed #header {
+    position: relative;
+    &:before {
+      content: '';
+      z-index: 0;
+      position: fixed;
+      top: 0;
+      display: block;
+      width: 100%;
+      height: 64px;
+      -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+    }
+  }
+  .headerbar-left {
+    z-index: 1011;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e6e6;
+  }
+  .header-fixed .headerbar-left {
+    position: fixed;
+  }
+  .headerbar-right {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 64px;
+    float: none !important;
+    background: #ffffff;
+    -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+    .header-nav-options {
+      margin-right: 12px;
+      float: right;
+    }
+    .header-nav-profile {
+      position: absolute;
+      float: left;
+    }
+    .header-nav-toggle {
+      position: absolute;
+      z-index: 1012;
+      top: -64px;
+      right: 0;
+    }
+  }
+  .header-fixed .headerbar-right .header-nav-toggle {
+    position: fixed;
+    top: 0;
+  }
+  .headerbar-left .header-nav {
+    margin-left: 12px;
+  }
+  .header-nav-profile .dropdown {
+    img {
+      width: 0px;
+      opacity: 0;
+    }
+    .profile-info {
+      padding-left: 0;
+      padding-right: 30px;
+    }
+  }
+  .navbar-search {
+    position: relative;
+    z-index: 1;
+    &.expanded .form-group {
+      max-width: 100%;
+      width: 480px;
+    }
+  }
+}
+
+#header.header-inverse {
+  background: #242a31;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.header-inverse .header-nav .btn-icon-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+@media (max-width: 768px) {
+  .header-inverse {
+    .headerbar-left {
+      background: #242a31;
+      border-bottom-color: rgba(255, 255, 255, 0.15);
+    }
+    .headerbar-right {
+      background: #242a31;
+    }
+  }
+}

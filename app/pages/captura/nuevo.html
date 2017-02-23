@@ -1,0 +1,252 @@
+<section>
+    <div class="section-header">
+        <ol class="breadcrumb">
+            <li><a href="/captura">Captura</a></li>
+            <li class="active">Nueva captura</li>
+        </ol>
+    </div>
+    <div class="section-body contain-lg">
+        <div id="resp-ajax" class="alert" role="alert"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-head style-primary">
+                        <header>Agregar una nueva captura</header>
+                    </div>
+                    <form id="form_captura" class="form">
+                        <div class="card-body ">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group ">
+                                                <select class="form-control select2-list" data-placeholder="Seleccione" name="captura-tipo" required>
+                                                    <option value="">&nbsp;</option>
+                                                    <option value="1">Bien</option>
+                                                    <option value="2">Maquinaria</option>
+                                                    <option value="3">Vehículo</option>
+                                                </select>
+                                                <label>Tipo de captura</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group ">
+                                                <select id="localidad" class="form-control select2-list" data-placeholder="Seleccione" name="localidad" required>
+                                                    <option value="">&nbsp;</option>
+                                                </select>
+                                                <label>Sede</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group ">
+                                                <select id="gerencia" class="form-control select2-list" data-placeholder="Seleccione" name="gerencia" required>
+                                                    <option value="">&nbsp;</option>
+                                                </select>
+                                                <label>Gerencia</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group ">
+                                                <select id="area" class="form-control select2-list" data-placeholder="Seleccione" name="area" required>
+                                                    <option value="">&nbsp;</option>
+                                                </select>
+                                                <label>Area</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <select id="equipo" class="form-control select2-list" data-placeholder="Seleccione" name="equipo" required>
+                                                    <option value="">&nbsp;</option>
+                                                </select>
+                                                <label>Equipo</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group ">
+                                                <select id="local" class="form-control select2-list" data-placeholder="Seleccione" name="local" required>
+                                                    <option value="">&nbsp;</option>
+                                                </select>
+                                                <label>Local</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group ">
+                                                <select id="piso" class="form-control select2-list" data-placeholder="Seleccione" name="piso" required>
+                                                    <option value="">&nbsp;</option>
+                                                </select>
+                                                <label>Piso</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group ">
+                                                <select id="ambiente" class="form-control select2-list" data-placeholder="Seleccione" name="ambiente" required>
+                                                    <option value="">&nbsp;</option>
+                                                </select>
+                                                <label>Ambiente</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div id="usuario_inv"></div> <label>Usuario</label> </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div id="proyecto"></div> <label>Proyecto</label> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-actionbar">
+                            <div class="card-actionbar-row"> <input type="hidden" name="action-frm" value="5043f762841a8c17c7385efd931b64d46ce0b044" /> <button type="reset" class="btn btn-flat">CANCELAR</button> <button type="submit" class="btn btn-flat btn-accent">NUEVA CAPTURA</button> </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="assets/js/modules/inleggo/core/demo/general.js"></script>
+<script>
+    $(".select2-list").select2();
+    $('.date').datepicker({
+        language: 'es'
+    });
+    var defSelect ='<option value=""></option>';
+    var piso ='<option value=""></option>';
+    for (var i = 0; i < 31; i++) {
+        piso += '<option value="' + i + '" >' + i +'</option>';
+    }
+    $("#piso").html(piso).select2();
+
+
+
+
+
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '../app/sqlite/' + localStorage.getItem('in_db') + '.sqlite', true);
+        xhr.responseType = 'arraybuffer';
+        xhr.onload = function(e) {
+          var uInt8Array = new Uint8Array(this.response);
+          var db = new SQL.Database(uInt8Array);
+          var stmt = db.prepare("SELECT * FROM localidad");
+          stmt.getAsObject({$start:1, $end:1});
+          stmt.bind({$start:1, $end:2});
+          output ='<option value=""></option>';
+          while(stmt.step()) {
+              var row = stmt.getAsObject();
+              output += '<option value="' + row.id + '" >' + row.nombre +'</option>';
+          }
+          $("#localidad").html(output).select2();
+          $("#localidad").change(function(){
+              var code = $(this).val();
+              var stmt2 = db.prepare("SELECT id, nombre FROM local WHERE localidad="+code+"");
+              stmt2.getAsObject({$start:1, $end:1});
+              stmt2.bind({$start:1, $end:2});
+              output ='<option value=""></option>';
+              while(stmt2.step()) {
+                  var row = stmt2.getAsObject();
+                  output += '<option value="' + row.id + '" >' + row.nombre +'</option>';
+              }
+              $("#local").html(output).select2();
+              $("#ambiente").html(defSelect).select2();
+          });
+
+          $("#local").change(function(){
+              var local = $(this).val();
+              var piso = $("#piso").val();
+              $("#ambiente").html(defSelect).select2();
+              if(piso!=''){
+                  var stmt2 = db.prepare("SELECT id, nombre FROM ambiente WHERE local="+local+" AND piso ="+piso+"");
+                  stmt2.getAsObject({$start:1, $end:1});
+                  stmt2.bind({$start:1, $end:2});
+                  output ='<option value=""></option>';
+                  while(stmt2.step()) {
+                      var row = stmt2.getAsObject();
+                      output += '<option value="' + row.id + '" >' + row.nombre +'</option>';
+                  }
+                  $("#ambiente").html(output).select2();
+              }else{
+                  // nada
+                  $("#piso").focus();
+                  $("#ambiente").html(defSelect).select2();
+              }
+          });
+          $("#piso").change(function(){
+              var piso = $(this).val();
+              var local = $("#local").val();
+              if(local!=''){
+                  var stmt2 = db.prepare("SELECT id, nombre FROM ambiente WHERE local="+local+" AND piso ="+piso+"");
+                  stmt2.getAsObject({$start:1, $end:1});
+                  stmt2.bind({$start:1, $end:2});
+                  output ='<option value=""></option>';
+                  while(stmt2.step()) {
+                      var row = stmt2.getAsObject();
+                      output += '<option value="' + row.id + '" >' + row.nombre +'</option>';
+                  }
+                  $("#ambiente").html(output).select2();
+              }else{
+                  // nada
+                  $("#local").focus();
+                  $("#ambiente").html(defSelect).select2();
+              }
+          });
+
+
+        };
+        xhr.send();
+
+
+
+
+
+
+
+
+
+/*
+
+    loadSelect("localidad", "select.localidad", "", "");
+    loadSelect("gerencia", "select.gerencia", "", "");
+    clearSelect('area', 'required');
+    clearSelect('equipo', '');
+    clearSelect('local', 'required');
+    clearSelect('ambiente', 'required');
+    loadSelect("piso", "select.piso", "", "");
+    loadSelect("usuario_inv", "select.usuario_inv", "", "");
+    loadSelect("proyecto", "select.proyecto.norequired", "", "");
+    loadSelect("inventariador", "select.user_inventariador", "", "");
+    $("#localidad").change(function() {
+        loadSubSelect('local', 'localidad', 'select.local');
+    });
+    $("#gerencia").change(function() {
+        loadSubSelect('area', 'gerencia', 'select.area');
+        clearSelect('equipo', '');
+    });
+    $("#area").change(function() {
+        loadSubSelect('equipo', 'area', 'select.equipo');
+    });
+    $("#piso,#local").change(function() {
+        var code = $("#local").find('select').val();
+        var code2 = $("#piso").find('select').val();
+        loadSelect("ambiente", "select.ambiente.piso", code, code2);
+    });
+
+*/
+
+
+    $("#resp-ajax").hide();
+    $("#form_captura").submit(function() {
+        $_nombre = $("#numero").val();
+        $_message_ok = "La captura <strong>" + $_nombre + "</strong> fue creada satisfactoriamente.";
+        SendAjaxCaptura("#form_captura", "#resp-ajax", $_message_ok, "captura");
+        return (false);
+    });
+</script>
