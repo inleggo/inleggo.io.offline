@@ -1,0 +1,23 @@
+{
+  "name": "inleggo.io",
+  "version": "1.0.0",
+  "description": "Desktop App for inleggo.io",
+  "main": "main.js",
+  "scripts": {
+    "package-mac": "electron-packager . --overwrite --asar=true --platform=darwin --arch=x64 --icon=logo.png --prune=true --out=release-builds",
+    "package-win": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=logo.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Inleggo.io\"",
+    "package-linux": "electron-packager . --overwrite --asar=true --platform=linux --arch=x64 --icon=logo.png --prune=true --out=release-builds",
+    "create-installer-mac": "electron-installer-dmg ./release-builds/Electron\\ tutorial\\ app-darwin-x64/Electron\\ tutorial\\ app.app electron-tutorial-app --out=release-builds --overwrite --icon=logo.png",
+    "create-installer-win": "node installers/windows/createinstaller.js"
+  },
+  "author": "Joseph Urbina",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^1.4.14",
+    "electron-winstaller": "^2.5.1"
+  },
+  "dependencies": {
+    "jQuery": "^1.7.4",
+    "jquery": "^3.1.1"
+  }
+}
