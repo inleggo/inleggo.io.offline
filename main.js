@@ -187,7 +187,7 @@ const BrowserWindow = electron.BrowserWindow;
 var mainWindow;
 var $ = require('jquery');
 app.on('ready',function(){
-	mainWindow = new BrowserWindow({width: 900, height: 630,backgroundColor: '#ffffff'});
+	mainWindow = new BrowserWindow({titleBarStyle: 'hidden', width: 900, height: 630,backgroundColor: '#ffffff'});
 	//mainWindow.loadURL('https://inleggo.io');
 	mainWindow.loadURL(url.format({
 		pathname: path.join(__dirname, 'app/login.html'),
