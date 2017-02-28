@@ -181,21 +181,24 @@ Menu.setApplicationMenu(menu);
 
 const path = require('path');
 const url = require('url');
-
+const remote = require('electron').remote;
 const BrowserWindow = electron.BrowserWindow;
 
-var mainWindow;
+var win;
 var $ = require('jquery');
+//const {BrowserWindow} = require('electron').remote;
 app.on('ready',function(){
-	mainWindow = new BrowserWindow({width: 900, height: 630,backgroundColor: '#ffffff'});
-	//mainWindow.loadURL('https://inleggo.io');
-	mainWindow.loadURL(url.format({
+	win = new BrowserWindow({nodeIntegration: true, width: 900, height: 630,backgroundColor: '#ffffff',frame: false});
+	//win.loadURL('https://inleggo.io');
+	win.loadURL(url.format({
 		pathname: path.join(__dirname, 'app/login.html'),
 		protocol: 'file:',
 		slashes: true
 	}));
+  //win.setIgnoreMouseEvents(true);
 
 });
+
 
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') {
