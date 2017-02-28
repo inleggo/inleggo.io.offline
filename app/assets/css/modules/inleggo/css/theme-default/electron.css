@@ -1,0 +1,59 @@
+body{
+    /*-webkit-app-region: drag;*/
+}
+#windowTop_, div.headerbar{
+  -webkit-app-region: drag;
+}
+button, a, input, select, textarea, .content, .header-nav, .dropdown, .dropdown-menu {
+  -webkit-app-region: no-drag !important;
+}
+/*
+.titlebar {
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+}
+*/
+#windowTop_{
+  background: transparent;
+  width:100%;
+  float:left;
+  padding:10px;
+  position:absolute;
+  z-index: 9999;
+}
+.clear_{
+  clear:both;
+}
+
+#windowTop_ .RWindow{
+  float:right;
+}
+#windowTop_ .RWindow button{
+  color:#fff;
+  background: transparent;
+  outline: none;
+  border:none;
+  text-align: center;
+  width:20px;
+  color:#282C34;
+}
+#windowTop_ .RWindow button:hover{
+  color:#f44336;
+  cursor:default;
+}
+#windowTop_ .LWindow{
+  float:left;
+  min-width: 100px;
+}
+#windowTop_ .LWindow #iconLogo{
+  color:#0aa89e !important;
+  float:left;
+}
+#windowTop_ .LWindow span{
+  float:left;
+  color: #0aa89e;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-left: 4px;
+  font-family: "Roboto", sans-serif, Helvetica, Arial, sans-serif;
+}

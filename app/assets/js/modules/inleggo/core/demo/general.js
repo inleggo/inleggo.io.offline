@@ -5,7 +5,29 @@ function loadPage(){
         $('#content').html(data);
     });
 }
+
+function maximize(){
+  const win = require('electron').remote.getCurrentWindow();
+  win.maximize();
+  $("#unmaximize").show();
+  $("#maximize").hide();
+  return(false);
+}
+function unmaximize(){
+  const win = require('electron').remote.getCurrentWindow();
+  win.unmaximize();
+  $("#unmaximize").hide();
+  $("#maximize").show();
+  return(false);
+}
+function minimize(){
+  const win = require('electron').remote.getCurrentWindow();
+  win.minimize();
+  return(false);
+}
+
 $(function () {
+  $("#unmaximize").hide();
     $('[data-toggle="tooltip"]').tooltip();
     $('[data-spy="scroll"]').each(function () {
         var $spy = $(this).scrollspy('refresh');

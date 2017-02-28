@@ -23,6 +23,7 @@
     <link href="assets/css/modules/inleggo/css/open-sans.css" rel="stylesheet" />
     <link href="assets/css/modules/inleggo/css/theme-default/bootstrap.css" rel="stylesheet" />
     <link href="assets/css/modules/inleggo/css/theme-default/inleggo.css" rel="stylesheet" />
+    <link href="assets/css/modules/inleggo/css/theme-default/electron.css" rel="stylesheet" />
     <link href="assets/css/modules/inleggo/css/theme-default/font-awesome.min.css" rel="stylesheet" />
     <link href="assets/css/modules/inleggo/css/theme-default/material-design-iconic-font.min.css" rel="stylesheet" />
     <link href="assets/css/modules/inleggo/css/theme-default/libs/select2/select2v4.css" rel="stylesheet"/>
@@ -63,10 +64,23 @@
     <script src="assets/js/modules/inleggo/core/demo/DemoFormComponents.js"></script>
     <script src="assets/js/modules/inleggo/core/cache/credenciales.js"></script>
     <script src="assets/js/modules/inleggo/core/login/login.js"></script>
+    <script src="assets/js/modules/inleggo/core/demo/general.js"></script>
     <script type="text/javascript">
     </script>
 </head>
 <body class="menubar-hoverable header-fixed ">
+    <header id="windowTop_">
+      <div class="LWindow">
+        <i id="iconLogo" class="md md-whatshot"></i> <span>inleggo.io</span>
+      </div>
+      <div class="RWindow">
+          <button id="minimize" onclick="minimize()"><i class="fa fa-window-minimize" aria-hidden="true"></i></button>
+          <button id="unmaximize" onclick="unmaximize()"><i class="fa fa-window-restore" aria-hidden="true"></i></button>
+          <button id="maximize" onclick="maximize()"><i class="fa fa-window-maximize" aria-hidden="true"></i></button>
+          <button id="close" onclick="window.close()"><i class="fa fa-times" aria-hidden="true"></i></button>
+      </div>
+    </header>
+    <div class="clear_"></div>
     <div class="loading-animation">
         <div class="sk-double-bounce">
             <div class="sk-child sk-double-bounce1"></div>

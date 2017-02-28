@@ -23,6 +23,7 @@
     <link href="assets/css/modules/inleggo/css/open-sans.css" rel="stylesheet" />
     <link href="assets/css/modules/inleggo/css/theme-default/bootstrap.css" rel="stylesheet" />
     <link href="assets/css/modules/inleggo/css/theme-default/inleggo.css" rel="stylesheet" />
+    <link href="assets/css/modules/inleggo/css/theme-default/electron.css" rel="stylesheet" />
     <link href="assets/css/modules/inleggo/css/theme-default/font-awesome.min.css" rel="stylesheet" />
     <link href="assets/css/modules/inleggo/css/theme-default/material-design-iconic-font.min.css" rel="stylesheet" />
     <link href="assets/css/modules/inleggo/css/theme-default/libs/select2/select2v4.css" rel="stylesheet"/>
@@ -83,6 +84,11 @@
                             <li><a href="cambiar.html">Cambiar contraseña</a></li>
                             <li class="divider"></li>
                             <li><a href="login.html"><i class="fa fa-fw fa-power-off text-danger"></i> Cerrar Sesion</a></li>
+                            <li class="divider"></li>
+                            <li id="minimize"><a onclick="minimize()"><i class="fa fa-window-minimize"></i> Minimizar</a></li>
+                            <li id="unmaximize"><a href="#" onclick="unmaximize()"><i class="fa fa-window-restore"></i> Restarurar</a></li>
+                            <li id="maximize"><a href="#" onclick="maximize()"><i class="fa fa-window-maximize"></i> Maximizar</a></li>
+                            <li id="close"><a href="#" onclick="window.close()"><i class="fa fa-fw fa-times text-danger"></i> Salir</a></li>
                         </ul>
                     </li>
                 </ul>
