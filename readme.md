@@ -1,4 +1,4 @@
-![inleggo.io](https://inleggo.io/assets/img/modules/logo/inleggo.small.png)
+![inleggo.io](http://inleggo.io/assets/img/modules/logo/inleggo.small.png)
 
 Inleggo es una aplicación que le permite gestionar su proyecto de **inventario de Activos Fijos**, puede revisar la información disponible en [http://inleggo.com](http://inleggo.com) así como nuestra aplicación corriendo en [http://inleggo.io](http://inleggo.io).
 
@@ -12,5 +12,3 @@ Inleggo es una aplicación que le permite gestionar su proyecto de **inventario 
 ### Creado por
 
 *Joseph Urbina*
-
-En desarrollo por el momento
