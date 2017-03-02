@@ -12,3 +12,5 @@ Inleggo es una aplicación que le permite gestionar su proyecto de **inventario 
 ### Creado por
 
 *Joseph Urbina*
+
+En desarrollo
