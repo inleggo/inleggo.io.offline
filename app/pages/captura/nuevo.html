@@ -91,13 +91,21 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <div id="usuario_inv"></div> <label>Usuario</label> </div>
+                                                <select id="usuario_inv" class="form-control select2-list" data-placeholder="Seleccione" name="usuario_inv" required>
+                                                    <option value="">&nbsp;</option>
+                                                </select>
+                                                <label>Usuario</label>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <div id="proyecto"></div> <label>Proyecto</label> </div>
+                                                <select id="proyecto" class="form-control select2-list" data-placeholder="Seleccione" name="proyecto">
+                                                    <option value="">&nbsp;</option>
+                                                </select>
+                                                <label>Proyecto</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -124,19 +132,14 @@
         piso += '<option value="' + i + '" >' + i +'</option>';
     }
     $("#piso").html(piso).select2();
-
-
-
-
-
-
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', '../app/sqlite/' + localStorage.getItem('in_db') + '.sqlite', true);
-        xhr.responseType = 'arraybuffer';
-        xhr.onload = function(e) {
-          var uInt8Array = new Uint8Array(this.response);
-          var db = new SQL.Database(uInt8Array);
-          var stmt = db.prepare("SELECT * FROM localidad");
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '../app/sqlite/' + localStorage.getItem('in_db') + '.sqlite', true);
+    xhr.responseType = 'arraybuffer';
+    xhr.onload = function(e) {
+      var uInt8Array = new Uint8Array(this.response);
+      var db = new SQL.Database(uInt8Array);
+      function querySelect(id,dep,query){
+          var stmt = db.prepare(query);
           stmt.getAsObject({$start:1, $end:1});
           stmt.bind({$start:1, $end:2});
           output ='<option value=""></option>';
@@ -144,104 +147,61 @@
               var row = stmt.getAsObject();
               output += '<option value="' + row.id + '" >' + row.nombre +'</option>';
           }
-          $("#localidad").html(output).select2();
-          $("#localidad").change(function(){
-              var code = $(this).val();
-              var stmt2 = db.prepare("SELECT id, nombre FROM local WHERE localidad="+code+"");
-              stmt2.getAsObject({$start:1, $end:1});
-              stmt2.bind({$start:1, $end:2});
-              output ='<option value=""></option>';
-              while(stmt2.step()) {
-                  var row = stmt2.getAsObject();
-                  output += '<option value="' + row.id + '" >' + row.nombre +'</option>';
-              }
-              $("#local").html(output).select2();
-              $("#ambiente").html(defSelect).select2();
-          });
-
-          $("#local").change(function(){
-              var local = $(this).val();
-              var piso = $("#piso").val();
-              $("#ambiente").html(defSelect).select2();
+          $(id).html(output).select2();
+          if(dep!=''){
+              $(dep).html(defSelect).select2();
+          }
+      }
+      function localidad(){
+          querySelect("#localidad","","SELECT * FROM localidad");
+      }
+      function local(){
+          var code = $("#localidad").val();
+          querySelect("#local","#ambiente","SELECT id, nombre FROM local WHERE localidad="+code+"");
+      }
+      function ambiente(){
+          var local = $("#local").val();
+          var piso = $("#piso").val();
+          $("#ambiente").html(defSelect).select2();
+          if(piso!='' && local!=''){
+              querySelect("#ambiente","","SELECT id, nombre FROM ambiente WHERE local="+local+" AND piso ="+piso+"");
+          }else{
               if(piso!=''){
-                  var stmt2 = db.prepare("SELECT id, nombre FROM ambiente WHERE local="+local+" AND piso ="+piso+"");
-                  stmt2.getAsObject({$start:1, $end:1});
-                  stmt2.bind({$start:1, $end:2});
-                  output ='<option value=""></option>';
-                  while(stmt2.step()) {
-                      var row = stmt2.getAsObject();
-                      output += '<option value="' + row.id + '" >' + row.nombre +'</option>';
-                  }
-                  $("#ambiente").html(output).select2();
-              }else{
-                  // nada
-                  $("#piso").focus();
-                  $("#ambiente").html(defSelect).select2();
-              }
-          });
-          $("#piso").change(function(){
-              var piso = $(this).val();
-              var local = $("#local").val();
-              if(local!=''){
-                  var stmt2 = db.prepare("SELECT id, nombre FROM ambiente WHERE local="+local+" AND piso ="+piso+"");
-                  stmt2.getAsObject({$start:1, $end:1});
-                  stmt2.bind({$start:1, $end:2});
-                  output ='<option value=""></option>';
-                  while(stmt2.step()) {
-                      var row = stmt2.getAsObject();
-                      output += '<option value="' + row.id + '" >' + row.nombre +'</option>';
-                  }
-                  $("#ambiente").html(output).select2();
-              }else{
-                  // nada
                   $("#local").focus();
-                  $("#ambiente").html(defSelect).select2();
+              }else{
+                  $("#piso").focus();
               }
-          });
-
-
-        };
-        xhr.send();
-
-
-
-
-
-
-
-
-
-/*
-
-    loadSelect("localidad", "select.localidad", "", "");
-    loadSelect("gerencia", "select.gerencia", "", "");
-    clearSelect('area', 'required');
-    clearSelect('equipo', '');
-    clearSelect('local', 'required');
-    clearSelect('ambiente', 'required');
-    loadSelect("piso", "select.piso", "", "");
-    loadSelect("usuario_inv", "select.usuario_inv", "", "");
-    loadSelect("proyecto", "select.proyecto.norequired", "", "");
-    loadSelect("inventariador", "select.user_inventariador", "", "");
-    $("#localidad").change(function() {
-        loadSubSelect('local', 'localidad', 'select.local');
-    });
-    $("#gerencia").change(function() {
-        loadSubSelect('area', 'gerencia', 'select.area');
-        clearSelect('equipo', '');
-    });
-    $("#area").change(function() {
-        loadSubSelect('equipo', 'area', 'select.equipo');
-    });
-    $("#piso,#local").change(function() {
-        var code = $("#local").find('select').val();
-        var code2 = $("#piso").find('select').val();
-        loadSelect("ambiente", "select.ambiente.piso", code, code2);
-    });
-
-*/
-
-
+              $("#ambiente").html(defSelect).select2();
+          }
+      }
+      function gerencia(){
+          querySelect("#gerencia","","SELECT * FROM gerencia");
+      }
+      function area(){
+          var code = $("#gerencia").val();
+          querySelect("#area","#equipo","SELECT id, nombre FROM area WHERE gerencia="+code+"");
+      }
+      function equipo(){
+          var code = $("#area").val();
+          querySelect("#equipo","","SELECT id, nombre FROM equipo WHERE area="+code+"");
+      }
+      function usuario_inv(){
+          querySelect("#usuario_inv","","SELECT * FROM usuario_inv");
+      }
+      function proyecto(){
+          querySelect("#proyecto","","SELECT * FROM proyecto");
+      }
+      localidad();
+      gerencia();
+      usuario_inv();
+      proyecto();
+      $("#localidad").change(function(){ local(); });
+      $("#local").change(function(){ ambiente(); });
+      $("#piso").change(function(){ ambiente(); });
+      $("#gerencia").change(function(){ area(); });
+      $("#area").change(function(){ equipo(); });
+    };
+    xhr.send();
     $("#resp-ajax").hide();
     $("#form_captura").submit(function() {
         $_nombre = $("#numero").val();
@@ -249,4 +209,5 @@
         SendAjaxCaptura("#form_captura", "#resp-ajax", $_message_ok, "captura");
         return (false);
     });
+    // PENDIENTE EL GUARDADO
 </script>
