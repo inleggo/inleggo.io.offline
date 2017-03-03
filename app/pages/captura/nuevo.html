@@ -126,6 +126,7 @@
     $('.date').datepicker({
         language: 'es'
     });
+    var captura='captura_bienes';
     var defSelect ='<option value=""></option>';
     var piso ='<option value=""></option>';
     for (var i = 0; i < 31; i++) {
@@ -200,14 +201,47 @@
       $("#piso").change(function(){ ambiente(); });
       $("#gerencia").change(function(){ area(); });
       $("#area").change(function(){ equipo(); });
+
+      $("#form_captura").submit(function() {
+          /* captura de datos */
+          var tipo = $("#captura-tipo").val();
+          var localidad = $("#localidad").val();
+          var gerencia = $("#gerencia").val();
+          var gerencia = $("#gerencia").val();
+          var area = $("#area").val();
+          var equipo = $("#equipo").val();
+          var local = $("#local").val();
+          var piso = $("#piso").val();
+          var ambiente = $("#ambiente").val();
+          var usuario =$("#usuario").val();
+          var proyecto = $("#proyecto").val();
+
+          if(tipo=='1'){
+              captura = 'captura_bien';
+          }else if (tipo=='2') {
+              captura = 'captura_maquinaria';
+          }else{
+              captura = 'captura_vehiculo';
+          }
+          var stmt = db.prepare("INSERT INTO "+captura+" VALUES ()");
+          stmt.getAsObject({$start:1, $end:1});
+          stmt.bind({$start:1, $end:2});
+
+          /*
+          $_nombre = $("#numero").val();
+          $_message_ok = "La captura <strong>" + $_nombre + "</strong> fue creada satisfactoriamente.";
+          SendAjaxCaptura("#form_captura", "#resp-ajax", $_message_ok, "captura");
+          */
+          return (false);
+      });
+
+
+
+
+
     };
     xhr.send();
     $("#resp-ajax").hide();
-    $("#form_captura").submit(function() {
-        $_nombre = $("#numero").val();
-        $_message_ok = "La captura <strong>" + $_nombre + "</strong> fue creada satisfactoriamente.";
-        SendAjaxCaptura("#form_captura", "#resp-ajax", $_message_ok, "captura");
-        return (false);
-    });
+
     // PENDIENTE EL GUARDADO
 </script>
