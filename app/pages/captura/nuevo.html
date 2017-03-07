@@ -20,7 +20,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group ">
-                                                <select class="form-control select2-list" data-placeholder="Seleccione" name="captura-tipo" required>
+                                                <select class="form-control select2-list" data-placeholder="Seleccione" id="captura-tipo" required>
                                                     <option value="">&nbsp;</option>
                                                     <option value="1">Bien</option>
                                                     <option value="2">Maquinaria</option>
@@ -202,6 +202,25 @@
       $("#gerencia").change(function(){ area(); });
       $("#area").change(function(){ equipo(); });
 
+      function setNumCaptura(captura){
+          var consulta = "SELECT max(id) AS id FROM "+captura+" WHERE user="+localStorage.getItem('userId');
+          var stmt = db.prepare(consulta);
+          stmt.getAsObject({$start:1, $end:1});
+          stmt.bind({$start:1, $end:2});
+          var idC = '';
+          while(stmt.step()) {
+              var row = stmt.getAsObject();
+              idC = row.id;
+          }
+          if(idC==null){
+              idC = 1;
+          }else{
+              idC = idC.toString().substr(3);
+              idC = parseInt(idC) + 1;
+          }
+          return(idC);
+      }
+
       $("#form_captura").submit(function() {
           /* captura de datos */
           var tipo = $("#captura-tipo").val();
@@ -215,6 +234,9 @@
           var ambiente = $("#ambiente").val();
           var usuario =$("#usuario").val();
           var proyecto = $("#proyecto").val();
+          var user = localStorage.getItem('userId');
+          var fecha_t = '';
+          var fecha_d = '';
 
           if(tipo=='1'){
               captura = 'captura_bien';
@@ -223,9 +245,17 @@
           }else{
               captura = 'captura_vehiculo';
           }
+          var ncap = setNumCaptura(captura);
+          ncap = localStorage.getItem('userId').toString() + ncap.toString();
+          console.log("ID captura: "+ncap);
+          // INSERT
+          db.run("INSERT INTO test VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [ncap,localidad,gerencia,area,equipo,ambiente,local,piso,fecha_t,fecha_d,usuario_inv,'',user,proyecto,0,0,0]);
+          /*
           var stmt = db.prepare("INSERT INTO "+captura+" VALUES ()");
           stmt.getAsObject({$start:1, $end:1});
           stmt.bind({$start:1, $end:2});
+          */
+
 
           /*
           $_nombre = $("#numero").val();
@@ -242,6 +272,8 @@
     };
     xhr.send();
     $("#resp-ajax").hide();
+
+
 
     // PENDIENTE EL GUARDADO
 </script>
