@@ -249,7 +249,15 @@
           ncap = localStorage.getItem('userId').toString() + ncap.toString();
           console.log("ID captura: "+ncap);
           // INSERT
-          db.run("INSERT INTO test VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [ncap,localidad,gerencia,area,equipo,ambiente,local,piso,fecha_t,fecha_d,usuario_inv,'',user,proyecto,0,0,0]);
+          db.run("INSERT INTO "+captura+" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [ncap,localidad,gerencia,area,equipo,ambiente,local,piso,fecha_t,fecha_d,usuario_inv,'',user,proyecto,0,0,0]);
+
+          //no error
+          // select * from captura_bien where user = 105 order by id desc
+          var fs = require("fs");
+          data = db.export();
+          var buffer = new Buffer(data);
+          fs.writeFileSync('app/sqlite/' + localStorage.getItem('in_db') + '.sqlite', buffer);
+
           /*
           var stmt = db.prepare("INSERT INTO "+captura+" VALUES ()");
           stmt.getAsObject({$start:1, $end:1});
