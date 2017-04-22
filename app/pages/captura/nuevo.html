@@ -1,7 +1,7 @@
 <section>
     <div class="section-header">
         <ol class="breadcrumb">
-            <li><a href="/captura">Captura</a></li>
+            <li><a href="#" class="linkIN" data-page="captura/listado">Captura</a></li>
             <li class="active">Nueva captura</li>
         </ol>
     </div>
@@ -122,6 +122,10 @@
 </section>
 <script src="assets/js/modules/inleggo/core/demo/general.js"></script>
 <script>
+    var fecha = new Date();
+    var mes = pad(fecha.getMonth(),2);
+    var dia = pad(fecha.getDay(),2);
+    var fecha_actual = fecha.getFullYear()+'-'+mes+'-'+dia;
     $(".select2-list").select2();
     $('.date').datepicker({
         language: 'es'
@@ -201,7 +205,6 @@
       $("#piso").change(function(){ ambiente(); });
       $("#gerencia").change(function(){ area(); });
       $("#area").change(function(){ equipo(); });
-
       function setNumCaptura(captura){
           var consulta = "SELECT max(id) AS id FROM "+captura+" WHERE user="+localStorage.getItem('userId');
           var stmt = db.prepare(consulta);
@@ -220,7 +223,6 @@
           }
           return(idC);
       }
-
       $("#form_captura").submit(function() {
           /* captura de datos */
           var tipo = $("#captura-tipo").val();
@@ -232,11 +234,15 @@
           var local = $("#local").val();
           var piso = $("#piso").val();
           var ambiente = $("#ambiente").val();
-          var usuario =$("#usuario").val();
+          var usuario_inv =$("#usuario_inv").val();
           var proyecto = $("#proyecto").val();
-          var user = localStorage.getItem('userId');
-          var fecha_t = '';
-          var fecha_d = '';
+          var user = localStorage.getItem('userId').toString();
+          var fecha_t = fecha_actual;
+          var fecha_d = fecha_actual;
+
+          if(proyecto==''){
+              proyecto='0';
+          }
 
           if(tipo=='1'){
               captura = 'captura_bien';
@@ -247,23 +253,19 @@
           }
           var ncap = setNumCaptura(captura);
           ncap = localStorage.getItem('userId').toString() + ncap.toString();
-          console.log("ID captura: "+ncap);
+          console.log("ID Cap: "+ncap);
+          console.log("Fecha: "+fecha_t);
+
           // INSERT
           db.run("INSERT INTO "+captura+" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [ncap,localidad,gerencia,area,equipo,ambiente,local,piso,fecha_t,fecha_d,usuario_inv,'',user,proyecto,0,0,0]);
 
           //no error
           // select * from captura_bien where user = 105 order by id desc
+          // select * from captura_bien where id LIKE '105%' order by id desc
           var fs = require("fs");
           data = db.export();
           var buffer = new Buffer(data);
           fs.writeFileSync('app/sqlite/' + localStorage.getItem('in_db') + '.sqlite', buffer);
-
-          /*
-          var stmt = db.prepare("INSERT INTO "+captura+" VALUES ()");
-          stmt.getAsObject({$start:1, $end:1});
-          stmt.bind({$start:1, $end:2});
-          */
-
 
           /*
           $_nombre = $("#numero").val();
@@ -272,16 +274,7 @@
           */
           return (false);
       });
-
-
-
-
-
     };
     xhr.send();
     $("#resp-ajax").hide();
-
-
-
-    // PENDIENTE EL GUARDADO
 </script>

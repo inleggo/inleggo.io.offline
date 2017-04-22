@@ -1,0 +1,375 @@
+<section>
+    <div class="section-header">
+        <ol class="breadcrumb">
+            <li><a href="#">Item</a></li>
+            <li class="active">Nuevo</li>
+        </ol>
+    </div>
+    <div class="section-body contain-lg">
+        <div id="resp-ajax" class="alert" role="alert"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-head style-primary">
+                        <header>Agregar un nuevo Item</header>
+                    </div>
+                    <form id="form_busqueda_item" class="form">
+                        <div class="card-body ">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group floating-label"> <select class="form-control select2-list" data-placeholder="Seleccione" name="tipo_codigo_bien" id="tipo_codigo_bien" required> <option value="cod_inv_last" >2015</option> <option value="cod_inv_last_1">2014</option> <option value="cod_inv_last_2">2013</option> <option value="codigo_barra" >Barra</option> <option value="sbn" selected>SBN</option> <option value="placa_negra">Placa Negra</option> <option value="serie">Serie</option> </select> <label for="tipo_codigo_bien">Tipo de código</label> </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group floating-label"> <input type="text" class="form-control " maxlength="20" id="codigo_bien" name="codigo_bien" required> <label for="codigo_bien">Código</label> </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group "> <button type="submit" class="btn ink-reaction btn-primary">Buscar item</button> </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h4>Búsqueda de item</h4>
+                                            <p>Búsque el item en la base contable, asi cuando lo ingrese se conciliará automáticamente, reduciendo el número de faltantes.</p>
+                                            <p> En caso de no haber algun codigo para buscar en la base contable puede ingresarlo directamente como sobrante. <br> <button type="button" id="sobrante_nuevo" class="btn btn-block ink-reaction btn-flat btn-accent">Ingresar sobrante</button> </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <form id="form_result_item" class="form">
+                        <div class="card-body ">
+                            <div class="row">
+                                <div id="result_bc_items" class="col-xs-12"> </div>
+                            </div>
+                        </div>
+                    </form>
+                    <form id="form_item" class="form">
+                        <div class="card-body ">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <!-- row -->
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="form-group "> <select class="form-control select2-list" data-placeholder="Seleccione" name="tipo_bien" id="tipo_bien" required> <option value="1" selected>Bien</option> <option value="2" >Maquinaria</option> <option value="3" >Vehículo</option> </select> <label>Tipo de item</label> </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group ">
+                                                <div id="captura"></div> <label>Captura</label> </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group "> <input type="text" class="form-control code_inv" id="cod_inv_lasted" name="cod_inv_lasted" required autofocus> <label for="cod_inv_lasted">Código 2016</label> </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group "> <input type="text" class="form-control" id="cod_inv_lasted_1" name="cod_inv_lasted_1"> <label for="cod_inv_lasted_1">Código 2015</label> </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group "> <input type="text" class="form-control" id="cod_inv_lasted_2" name="cod_inv_lasted_2"> <label for="cod_inv_lasted_2">Código 2014</label> </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group "> <input type="text" class="form-control" id="cod_inv_lasted_3" name="cod_inv_lasted_3"> <label for="cod_inv_lasted_3">Código 2013</label> </div>
+                                        </div>
+                                    </div>
+                                    <!-- row -->
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group "> <input type="text" class="form-control" id="cod_inv_lasted_4" name="cod_inv_lasted_4"> <label for="cod_inv_lasted_4">Código 2012</label> </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group "> <input type="text" class="form-control " maxlength="6" id="cod_activo" name="cod_activo"> <label for="cod_activo">Código barra</label> </div>
+                                        </div>
+                                        <div class="col-md-3 bien maquinaria vehiculo">
+                                            <div class="form-group "> <input type="text" class="form-control numeric" id="cod_sbn" maxlength="12" name="cod_sbn"> <label for="cod_sbn">Código SBN</label> </div>
+                                        </div>
+                                        <div class="col-md-3 vehiculo">
+                                            <div class="form-group "> <input type="text" class="form-control ucase" id="placa" maxlength="8" name="placa"> <label for="placa">Placa</label> </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group "> <input type="text" class="form-control code_inv" id="componente" name="componente"> <label for="componente">Componente padre</label> </div>
+                                        </div>
+                                    </div>
+                                    <!-- row -->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group ">
+                                                <div id="sbn"></div> <label>Descripció SBN</label> </div>
+                                        </div>
+                                    </div>
+                                    <!-- row -->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group "> <input type="text" class="form-control tcase" id="descripcion_bien" name="descripcion_bien" maxlength="255" required> <label for="descripcion_bien">Descripción</label> </div>
+                                        </div>
+                                    </div>
+                                    <!-- row -->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group "> <textarea name="descripcion_tecnica" id="descripcion_tecnica" class="form-control ucfirst" rows="3" placeholder=""></textarea> <label for="descripcion_tecnica">Descripción Técnica <span class="maquinaria vehiculo">(función del bien)</span></label> </div>
+                                        </div>
+                                    </div>
+                                    <!-- row -->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group "> <textarea name="observaciones" id="observaciones" class="form-control ucfirst" rows="3" placeholder=""></textarea> <label for="observaciones">Observaciones</label> </div>
+                                        </div>
+                                    </div>
+                                    <!-- row -->
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group "> <input type="text" class="form-control ucase" id="marca" name="marca" maxlength="100"> <label for="marca">Marca</label> </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group "> <input type="text" class="form-control ucase" maxlength="100" id="modelo" name="modelo"> <label for="modelo">Modelo</label> </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group "> <input type="text" class="form-control ucase" maxlength="100" id="tipo" name="tipo"> <label for="tipo">Tipo</label> </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group "> <input type="text" class="form-control ucase" maxlength="100" id="serie" name="serie"> <label for="serie">Serie</label> </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group "> <input type="text" class="form-control ucase" maxlength="100" id="dimensiones" name="dimensiones"> <label for="dimensiones">Dimensiones</label> </div>
+                                        </div>
+                                    </div>
+                                    <!-- row -->
+                                    <div class="row vehiculo">
+                                        <div class="col-md-12">
+                                            <div class="form-group "> <input type="text" class="form-control ucase" maxlength="100" id="soat" name="soat"> <label for="soat">SOAT</label> </div>
+                                        </div>
+                                    </div>
+                                    <!-- row -->
+                                    <div class="row maquinaria vehiculo">
+                                        <div class="col-md-3">
+                                            <div class="form-group "> <input type="text" class="form-control ucase" maxlength="100" id="placa_rodaje" name="placa_rodaje"> <label for="placa_rodaje">Placa de Rodaje</label> </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group "> <input type="text" class="form-control ucase" maxlength="100" id="serie_motor" name="serie_motor"> <label for="serie_motor">Serie de motor</label> </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group "> <input type="text" class="form-control ucase" maxlength="100" id="serie_chasis" name="serie_chasis"> <label for="serie_chasis">Serie de chasis</label> </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group ">
+                                                <div id="año"></div> <label>Año de fabricación</label> </div>
+                                        </div>
+                                    </div>
+                                    <!-- row -->
+                                    <div class="row maquinaria vehiculo">
+                                        <div class="col-md-3">
+                                            <div class="form-group "> <input type="text" class="form-control ucase" maxlength="100" id="capacidad" name="capacidad"> <label for="capacidad">Capacidad</label> </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group "> <input type="text" class="form-control ucase" maxlength="100" id="potencia" name="potencia"> <label for="potencia">Potencia</label> </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group "> <input type="text" class="form-control ucase" maxlength="100" id="peso" name="peso"> <label for="peso">Peso</label> </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group ">
+                                                <div class="col-sm-12"> <label class="radio-inline radio-styled"> <input name="mantenimiento" value="1" type="radio"><span>Si</span> </label> <label class="radio-inline radio-styled"> <input name="mantenimiento" value="2" type="radio" checked><span>No</span> </label> </div> <label for="mantenimiento">Mantenimiento</label> </div>
+                                        </div>
+                                    </div>
+                                    <!-- row -->
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group ">
+                                                <div id="color"></div> <label>Color</label> </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group ">
+                                                <div id="material"></div> <label>Material</label> </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group ">
+                                                <div id="situacion"></div> <label>Estado</label> </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group ">
+                                                <div id="composicion"></div> <label>Composición</label> </div>
+                                        </div>
+                                    </div>
+                                    <!-- row -->
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group "> <select class="form-control select2-list" data-placeholder="Seleccione" name="uso" id="uso" required> <option selected value="1">En uso</option> <option value="2">Sin uso</option> </select> <label>Uso</label> </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group "> <select class="form-control select2-list" data-placeholder="Seleccione" name="condicion" id="condicion" required> <option selected value="1">Operativo</option> <option value="2">No operativo</option> </select> <label>Condición</label> </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group ">
+                                                <div id="propiedad"></div> <label>Propiedad</label> </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group "> <select class="form-control select2-list" data-placeholder="Seleccione" name="lamina_activo" id="lamina_activo" required> <option value="1">Lámina</option> <option selected value="2">Activo</option> </select> <label>Lámina/Activo</label> </div>
+                                        </div>
+                                    </div>
+                                    <!-- row -->
+                                    <div class="row vehiculo">
+                                        <div class="col-md-2">
+                                            <div class="form-group ">
+                                                <div class="col-sm-12"> <label class="radio-inline radio-styled"> <input name="gata" value="1" type="radio"><span>Si</span> </label> <label class="radio-inline radio-styled"> <input name="gata" value="2" type="radio" checked><span>No</span> </label> </div> <label for="gata">Gata</label> </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group ">
+                                                <div class="col-sm-12"> <label class="radio-inline radio-styled"> <input name="llanta_repuesto" value="1" type="radio"><span>Si</span> </label> <label class="radio-inline radio-styled"> <input name="llanta_repuesto" value="2" type="radio" checked><span>No</span> </label> </div> <label for="llanta_repuesto">Llanta de repuesto</label> </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group ">
+                                                <div class="col-sm-12"> <label class="radio-inline radio-styled"> <input name="desarmadores" value="1" type="radio"><span>Si</span> </label> <label class="radio-inline radio-styled"> <input name="desarmadores" value="2" type="radio" checked><span>No</span> </label> </div> <label for="desarmadores">Desarmadores</label> </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group ">
+                                                <div class="col-sm-12"> <label class="radio-inline radio-styled"> <input name="llave_rueda" value="1" type="radio"><span>Si</span> </label> <label class="radio-inline radio-styled"> <input name="llave_rueda" value="2" type="radio" checked><span>No</span> </label> </div> <label for="llave_rueda">llave de rueda</label> </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group ">
+                                                <div class="col-sm-12"> <label class="radio-inline radio-styled"> <input name="extintor" value="1" type="radio"><span>Si</span> </label> <label class="radio-inline radio-styled"> <input name="extintor" value="2" type="radio" checked><span>No</span> </label> </div> <label for="extintor">Extintor</label> </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group ">
+                                                <div class="col-sm-12"> <label class="radio-inline radio-styled"> <input name="triangulo_seguridad" value="1" type="radio"><span>Si</span> </label> <label class="radio-inline radio-styled"> <input name="triangulo_seguridad" value="2" type="radio" checked><span>No</span> </label> </div> <label for="triangulo_seguridad">Triangulo de seguridad</label> </div>
+                                        </div>
+                                    </div>
+                                    <!-- row -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-actionbar">
+                            <div class="card-actionbar-row"> <input name="base_contable" id="base_contable" type="hidden"> <input type="hidden" name="action-frm" id="action-frm" value=""> <input type="hidden" name="est_inv" id="est_inv" value=""> <input type="hidden" name="conciliado_x" id="conciliado_x" value=""> <button type="button" class="btn btn-flat" id="busqueda_1">BUSCAR OTRO</button> <button type="reset" class="btn btn-flat">CANCELAR</button> <button type="submit" class="btn btn-flat btn-accent">NUEVO ITEM</button> </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    $(document).ready(function() {
+        $("#cod_activo").mask("999999", {
+            placeholder: "_"
+        });
+        $(".code_inv").mask("99999");
+        $("#cod_inv_lasted_1").mask("99999");
+        $("#cod_inv_lasted_2").mask("99999");
+        $("#cod_inv_lasted_3").mask("99999");
+        $("#cod_inv_lasted_4").mask("99999");
+        var _tipo_bien_session = "1";
+        $(".maquinaria, .vehiculo").hide();
+        $(".bien").show();
+        loadSelect("sbn", "select.sbn", "", "1"); /*$(".year").mask("9999");*/
+        $("#codigo_bien").focus(); /* busqueda de item */
+        $("#form_item").hide();
+        $("#form_result_item").hide(); /*$("#form_busqueda_item").hide();*/
+        $("#sobrante_nuevo").click(function() {
+            loadDataItemInsert();
+            $("#form_busqueda_item").hide();
+            $("#form_item").slideDown(); /* aqui aseguramos que sea un sobrante el que se ingrese */
+            $("#est_inv").val('2');
+            $("#base_contable").val('');
+            $("#conciliado_x").val('');
+            console.log("Se procedera a ingresar un sobrante.");
+        });
+        $("#busqueda_1").click(function() {
+            $("#form_item").hide();
+            $("#form_item").find("input").val("");
+            $("#codigo_bien").val("");
+            $("#form_busqueda_item").slideDown();
+            $("html, body").animate({
+                scrollTop: 0
+            }, "slow");
+            $("#codigo_bien").focus();
+        });
+        $("#form_busqueda_item").submit(function() {
+            var code = $("#tipo_codigo_bien").val();
+            var code2 = $("#codigo_bien").val();
+            loadDivTab2("result_bc_items", "div.info.busqueda.item.base.contable", code, code2);
+            $(this).hide();
+            $("#form_busqueda_item").hide();
+            $("#form_item").hide();
+            $("#form_result_item").slideDown();
+            return (false);
+        }); /* result_bc_items */ /* end busqueda de item */ /* cambio de tipo de item */
+        var _captura_session = 'Ninguna';
+        $("#tipo_bien").change(function() {
+            var _captura_selected = "";
+            var _tipo = $(this).val();
+            if (_tipo == 1) {
+                if (_tipo_bien_session == 1) {
+                    _captura_selected = _captura_session;
+                };
+                $(".maquinaria, .vehiculo").slideUp();
+                $(".maquinaria, .vehiculo").find("input").val("");
+                $(".bien").slideDown();
+                loadSelect("captura", "select.captura", _captura_selected, "1");
+                loadSelect("sbn", "select.sbn", "", "1");
+            } else if (_tipo == 2) {
+                if (_tipo_bien_session == 2) {
+                    _captura_selected = _captura_session;
+                };
+                $(".bien, .vehiculo").slideUp();
+                $(".bien, .vehiculo").find("input").val("");
+                $(".maquinaria").slideDown();
+                loadSelect("captura", "select.captura", _captura_selected, "2");
+                loadSelect("sbn", "select.sbn", "", "2");
+            } else if (_tipo == 3) {
+                if (_tipo_bien_session == 3) {
+                    _captura_selected = _captura_session;
+                };
+                $(".bien, .maquinaria").slideUp();
+                $(".bien, .maquinaria").find("input").val("");
+                $(".vehiculo").slideDown();
+                loadSelect("captura", "select.captura", _captura_selected, "3");
+                loadSelect("sbn", "select.sbn", "", "3");
+            } else {}
+        }); /* end cambio de tipo de item */ /* carga de selects externos */
+        loadSelect("captura", "select.captura", "Ninguna", "");
+        var loaded = 0;
+
+        function loadDataItemInsert() {
+            if (loaded == 0) {
+                loadSelect("color", "select.color", "", "");
+                loadSelect("material", "select.material", "", "");
+                loadSelect("situacion", "select.situacion", "", "");
+                loadSelect("composicion", "select.composicion", "", "");
+                loadSelect("propiedad", "select.propiedad", "1", "");
+                loadSelect("año", "select.anio.fab", "", "");
+            }
+            loaded++;
+        }; /* end carga de selects externos */
+        $("#sbn").change(function() {
+            var text = $(this).find('select option:selected').html(); /* var val_ = $(this).find('select').val(); $mensaje = "valor del SBN:"+val_; toastr.success($mensaje, 'SBN!', {timeOut: 9000}); */
+            if (text == "Ninguno") {
+                text = "";
+            }
+            $('#descripcion_bien').val(text);
+        }); /* enviar formulario */ /* ( ͡° ͜ʖ ͡°) */
+        $("#resp-ajax").hide();
+        $("#form_item").submit(function() {
+            $("#action-frm").val("5043f762841a8c17c7385efd931b64d46ce0b044");
+            $_action_frm = $("#action-frm").val();
+            $_cod_inv_lasted = $("#cod_inv_lasted").val();
+            $_base_contable = $("#base_contable").val();
+            $_tipo = $("#tipo_bien").val();
+            $_estado = "como sobrante";
+            $("#est_inv").val("2");
+            if ($_base_contable > 0) {
+                $_estado = "y conciliado";
+                $("#est_inv").val("1");
+            }
+            $_message_ok = "El item <strong>" + $_cod_inv_lasted + "</strong> fue creado " + $_estado + " satisfactoriamente.";
+            SendAjaxItem("#form_item", "#resp-ajax", $_message_ok, "detalle_captura", $_tipo);
+            console.log("Actiion form: " + $_action_frm);
+            $("html, body").animate({
+                scrollTop: 0
+            }, "slow");
+            return (false);
+        }); /* end enviar formulario */
+    });
+</script>

@@ -4,28 +4,33 @@ function loadPage(){
     $.get('pages/' + localStorage.getItem('page') + '.html').success(function(data){
         $('#content').html(data);
     });
-}
-
+};
 function maximize(){
   const win = require('electron').remote.getCurrentWindow();
   win.maximize();
   $("#unmaximize").show();
   $("#maximize").hide();
   return(false);
-}
+};
 function unmaximize(){
   const win = require('electron').remote.getCurrentWindow();
   win.unmaximize();
   $("#unmaximize").hide();
   $("#maximize").show();
   return(false);
-}
+};
 function minimize(){
   const win = require('electron').remote.getCurrentWindow();
   win.minimize();
   return(false);
-}
-
+};
+function pad (n, length) {
+    var  n = n.toString();
+    while(n.length < length){
+        n = "0" + n;
+    }
+    return n;
+};
 $(function () {
   $("#unmaximize").hide();
     $('[data-toggle="tooltip"]').tooltip();
