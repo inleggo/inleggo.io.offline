@@ -1,5 +1,6 @@
 /*
 Usuario de prueba: 41468609
+// test
 */
 const setupEvents = require('./installers/setupEvents')
 if (setupEvents.handleSquirrelEvent()) {
